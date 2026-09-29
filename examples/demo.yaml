@@ -1,0 +1,128 @@
+# TYR Visual Engine — demo scene
+#
+# Showcase of V1 features: gradient backgrounds, animated text,
+# shapes, an image overlay, and fade transitions between scenes.
+#
+#   tyr validate examples/demo.yaml
+#   tyr render examples/demo.yaml -o demo.mp4
+
+video:
+  width: 640
+  height: 360
+  fps: 24
+  background:
+    type: solid
+    color: "#0a0a0f"
+
+scenes:
+  - name: title
+    duration: 2.5
+    background:
+      type: gradient
+      from: "#0a0a0f"
+      to: "#23233a"
+      direction: vertical
+    elements:
+      - type: text
+        text: "TYR VISUAL ENGINE"
+        x: 320
+        y: 150
+        anchor: center
+        font_size: 52
+        color: "#ffffff"
+        start: 0.0
+        end: 2.5
+        animate:
+          x: [-260, 320]
+      - type: text
+        text: "deterministic video, from structured scenes"
+        x: 320
+        y: 210
+        anchor: center
+        font_size: 24
+        color: "#9aa0b5"
+        start: 0.8
+        end: 2.5
+      - type: rect
+        x: 270
+        y: 240
+        width: 100
+        height: 8
+        fill: "#f5a623"
+        radius: 4
+        start: 1.0
+        end: 2.5
+
+  - name: shapes
+    duration: 2.5
+    transition_in: fade
+    transition_duration: 0.6
+    background:
+      type: solid
+      color: "#0b0b10"
+    elements:
+      - type: rect
+        x: 60
+        y: 140
+        width: 120
+        height: 80
+        fill: "#ff5500"
+        radius: 10
+        start: 0.0
+        end: 2.5
+        animate:
+          x: [60, 460]
+      - type: ellipse
+        x: 430
+        y: 60
+        width: 110
+        height: 110
+        fill: "#22d3ee"
+        start: 0.3
+        end: 2.5
+      - type: image
+        path: assets/badge.png
+        x: 560
+        y: 290
+        width: 96
+        anchor: center
+        start: 0.5
+        end: 2.5
+      - type: text
+        text: "shapes · images · motion"
+        x: 320
+        y: 320
+        anchor: center
+        font_size: 22
+        color: "#9aa0b5"
+        start: 0.5
+        end: 2.5
+
+  - name: outro
+    duration: 2.0
+    transition_in: fade
+    transition_duration: 0.6
+    background:
+      type: gradient
+      from: "#101018"
+      to: "#0a0a0f"
+      direction: vertical
+    elements:
+      - type: text
+        text: "rendered headlessly"
+        x: 320
+        y: 160
+        anchor: center
+        font_size: 40
+        color: "#ffffff"
+        start: 0.0
+        end: 2.0
+      - type: text
+        text: "pillow + ffmpeg · no GUI · no network"
+        x: 320
+        y: 210
+        anchor: center
+        font_size: 22
+        color: "#9aa0b5"
+        start: 0.3
+        end: 2.0
